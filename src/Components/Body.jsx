@@ -1,14 +1,15 @@
 import React, { useState } from "react";
-import SearchField from "./SearchField";
 import axios from "./Api/Axios";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Loader from "./Loader";
+import { useLocation } from "react-router-dom";
 const Body = () => {
   const [bgImage, setbgImage] = useState("");
   const [descp, setdescp] = useState([]);
   const [trend, setTrend] = useState([]);
   const [selectedOption, setSelectedOption] = useState("");
+  const {pathname} = useLocation()
   const handleChange = (e) => {
     const value = e.target.value;
     setSelectedOption(value);
@@ -37,8 +38,7 @@ const Body = () => {
     data();
     // console.log("Hello  I am use Effect from body");
   }, []);
-  return (
-   bgImage?(
+  return bgImage ? (
     <div className="h-full min-w-full ">
       <div
         className="w-full h-[80vh] items-center  justify-center  "
@@ -57,9 +57,12 @@ const Body = () => {
           <h1 className="font-medium text-lg w-2/3 mt-2 leading-tight ml-20   text-white">
             {descp.overview}
           </h1>
-          <button className=" bg-white text-black ml-20 mt-6 font-semibold w-36 h-12 hover:text-lg rounded transition-all hover:scale-105 text-xl italic mt-4 ">
+          <Link
+            to={`${descp.media_type}/details/${descp.id}/trailer`}
+            className=" bg-white text-black ml-20 mt-6 font-semibold w-32 h-12 p-2 hover:text-lg rounded transition-all hover:scale-105 text-xl italic  "
+          >
             Watch Now
-          </button>
+          </Link>
         </div>
       </div>
 
@@ -94,7 +97,11 @@ const Body = () => {
           selectedOption === "") &&
           trend.map((item, index) => (
             // item.media_type==="movie"&&(
-            <Link to= {`/${item.media_type}/details/${item.id}`}  key={index} className="flex flex-col ">
+            <Link
+              to={`/${item.media_type}/details/${item.id}`}
+              key={index}
+              className="flex flex-col "
+            >
               <div
                 className="overflow-auto w-64 h-40 mx-2 rounded-sm bg-slate-500 flex bg-opacity-5"
                 style={{
@@ -102,17 +109,14 @@ const Body = () => {
                   backgroundSize: "cover",
                   backgroundPosition: "center",
                 }}
-              >
-           
-              </div>
-
+              ></div>
 
               <div className="border-8 h-[0px] border-black text-white bg-slate-900 transition-all duration-300">
-                    <h1>{item.original_name || item.original_title}</h1>
-                    <h1 className="overflow-hidden whitespace-nowrap overflow-ellipsis w-[200px]">
-                      {item.overview}
-                    </h1>
-                  </div>
+                <h1>{item.original_name || item.original_title}</h1>
+                <h1 className="overflow-hidden whitespace-nowrap overflow-ellipsis w-[200px]">
+                  {item.overview}
+                </h1>
+              </div>
             </Link>
             // )
           ))}
@@ -121,7 +125,11 @@ const Body = () => {
           trend.map(
             (item, index) =>
               item.media_type !== "movie" && (
-                <Link to= {`/${item.media_type}/details/${item.id}`} key={index} className="flex flex-col ">
+                <Link
+                  to={`/${item.media_type}/details/${item.id}`}
+                  key={index}
+                  className="flex flex-col "
+                >
                   <div
                     className="overflow-auto w-64 h-40 mx-2 rounded-sm bg-slate-500 flex "
                     style={{
@@ -145,7 +153,11 @@ const Body = () => {
           trend.map(
             (item, index) =>
               item.media_type === "movie" && (
-                <Link to= {`/${item.media_type}/details/${item.id}`} key={index} className="flex flex-col ">
+                <Link
+                  to={`/${item.media_type}/details/${item.id}`}
+                  key={index}
+                  className="flex flex-col "
+                >
                   <div
                     className="overflow-auto w-64 h-40 mx-2 rounded-sm bg-slate-500 flex "
                     style={{
@@ -207,56 +219,52 @@ const Body = () => {
           </div>
         ))}
       </div> */}
-    </div>):(
-    <Loader/>
-
-
-    
-   )
-    // <div className="h-full  min-w-full ">
-    //   <div
-    //     className="w-full h-screen"
-    //     style={{
-    //       backgroundImage: `url(https://image.tmdb.org/t/p/original${bgImage})`,
-    //       backgroundSize: "cover",
-    //       backgroundPosition: "center",
-    //       backgroundBlendMode: "lighten",
-    //     }}
-    //   >
-    //     <h1 className=" text-white font-extrabold text-7xl ">
-    //       {descp.original_title || descp.original_name}
-    //     </h1>
-    //     <h1 className=" font-medium text-lg w-2/3 mt-2 leading-tight">
-    //       {descp.overview}
-    //     </h1>
-    //     helo
-    //   </div>
-    //   {/* <div className=" flex flex-row ">
-    //     {trend.map((item, index) => (
-    //       <div className="flex">
-    //         <img
-    //           className="w-[40vh]  bg-slate-500  "
-    //           src={`https://image.tmdb.org/t/p/original${item.backdrop_path}`}
-    //           alt=""
-    //         />
-    //       </div>
-    //     ))}
-    //   </div> */}
-    //   <div className="flex flex-row">
-    //     {trend.map((item, index) => (
-    //       <div key={index} className="flex">
-    //         <img
-    //           style={{ width: "300px" }} // Adjust the width inline
-    //           className="h-auto bg-slate-500"
-    //           src={`https://image.tmdb.org/t/p/original${item.backdrop_path}`}
-    //           alt=""
-    //         />
-    //       </div>
-    //     ))}
-    //   </div>
-    // </div>
-
+    </div>
+  ) : (
+    <Loader />
   );
+  // <div className="h-full  min-w-full ">
+  //   <div
+  //     className="w-full h-screen"
+  //     style={{
+  //       backgroundImage: `url(https://image.tmdb.org/t/p/original${bgImage})`,
+  //       backgroundSize: "cover",
+  //       backgroundPosition: "center",
+  //       backgroundBlendMode: "lighten",
+  //     }}
+  //   >
+  //     <h1 className=" text-white font-extrabold text-7xl ">
+  //       {descp.original_title || descp.original_name}
+  //     </h1>
+  //     <h1 className=" font-medium text-lg w-2/3 mt-2 leading-tight">
+  //       {descp.overview}
+  //     </h1>
+  //     helo
+  //   </div>
+  //   {/* <div className=" flex flex-row ">
+  //     {trend.map((item, index) => (
+  //       <div className="flex">
+  //         <img
+  //           className="w-[40vh]  bg-slate-500  "
+  //           src={`https://image.tmdb.org/t/p/original${item.backdrop_path}`}
+  //           alt=""
+  //         />
+  //       </div>
+  //     ))}
+  //   </div> */}
+  //   <div className="flex flex-row">
+  //     {trend.map((item, index) => (
+  //       <div key={index} className="flex">
+  //         <img
+  //           style={{ width: "300px" }} // Adjust the width inline
+  //           className="h-auto bg-slate-500"
+  //           src={`https://image.tmdb.org/t/p/original${item.backdrop_path}`}
+  //           alt=""
+  //         />
+  //       </div>
+  //     ))}
+  //   </div>
+  // </div>
 };
 
 export default Body;

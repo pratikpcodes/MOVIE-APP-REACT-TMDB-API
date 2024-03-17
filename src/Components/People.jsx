@@ -4,7 +4,6 @@ import Cards from "./Cards";
 import { useEffect } from "react";
 import DropDown from "./DropDown";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { set } from "react-hook-form";
 import Loader from "./Loader";
 
 // trending/person/${Category}?api_key=2097a5a28a7485de0b3eee9dc349c0aa&page=${page}

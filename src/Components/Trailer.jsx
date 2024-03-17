@@ -32,7 +32,7 @@ const Trailer = () => {
   console.log("------------------------------------");
   console.log(selector);
 
-  return trailerData ? (
+  return (
     <div className="w-full bg-slate-950 justify-center items-center flex ">
       <div className="mt-20">
         <ReactPlayer
@@ -43,9 +43,7 @@ const Trailer = () => {
         />
       </div>
     </div>
-  ) : (
-    <Loader />
-  );
+  ) ;
 };
 
 export default Trailer;
