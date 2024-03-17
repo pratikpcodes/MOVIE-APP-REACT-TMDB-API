@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ::-webkit-scrollbar {
+    display: none;
+} */
+
+/* Hide the default scrollbar */
+::-webkit-scrollbar {
+    width: 5px; /* Set the width of the scrollbar */
+    background-color: #000; /* Set the background color of the scrollbar */
+}
+
+/* Hide the default scrollbar */
+::-webkit-scrollbar {
+    height: 10px; /* Set the height of the scrollbar */
+    background-color: #000; /* Set the background color of the scrollbar */
+}
+
+/* Hide scrollbar arrows (buttons) */
+::-webkit-scrollbar-button {
+    display: none;
+}
+
+/* Customize scrollbar thumb */
+::-webkit-scrollbar-thumb {
+    background-color: #888; /* Set the color of the scrollbar thumb */
+    border-radius: 2px; /* Round corners of the thumb */
+}
+
+/* Hover effect on scrollbar thumb */
+::-webkit-scrollbar-thumb:hover {
+    background-color: #555; /* Set the color of the thumb on hover */
+}
+
+/* Customize scrollbar track */
+::-webkit-scrollbar-track {
+    background-color: #000; /* Set the background color of the track */
+}
+
+/* Customize scrollbar corner */
+::-webkit-scrollbar-corner {
+    background-color: transparent; /* Set the color of the scrollbar corner */
+}
