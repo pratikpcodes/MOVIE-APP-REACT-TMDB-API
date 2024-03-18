@@ -31,7 +31,7 @@ const Popular = () => {
   // );
 
   const [cardData, setcardData] = useState([]);
-  const [Category, setCategory] = useState("tv");
+  const [Category, setCategory] = useState("movie");
   const [page, setpage] = useState(1);
   const [hasmore, sethasmore] = useState(true);
 
@@ -79,7 +79,7 @@ const Popular = () => {
         next={data}
         hasMore={hasmore}
       >
-        <Cards data={cardData} title="pop" />
+        <Cards data={cardData} title={Category} />
       </InfiniteScroll>
     </div>
   ) : (
